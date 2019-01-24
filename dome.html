@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>图片画廊</title>
+<style type="text/css">
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content: ;}
+abbr,acronym{border:0;}
+body{ background:#000;}
+
+
+#slide-galleries-main{ margin-top:20px;border-top:1px solid #333;font-size:12px;color:#9A9A9A;}
+#slide-galleries-main a{color:#9A9A9A;text-decoration:none;}
+#slide-galleries-con{width:1000px; margin:0 auto;padding:20px 0;}
+#slide-galleries-con h1{color:#fff;font-size:26px; text-align:center;}
+#slide-galleries-toolbar{height:20px; margin:30px 0 10px;}
+#slide-galleries-toolbar li{float:left; margin-right:10px;}
+#slide-galleries-toolbar li a{ margin-right:10px;color:#ccc;}
+#slide-image-wrap{position:relative; text-align:center;}
+#slide-image-wrap .slide-btn{width:50%;height:100%; position:absolute;top:0;cursor:pointer;}
+#slide-image-wrap .slide-btn-prev{left:0;}
+#slide-image-wrap .slide-btn-next{right:0;}
+#slide-image-wrap .slide-btn .slide-btn-bg-opacity{width:100%;height:100%; background:#000;opacity:0;filter:alpha(opacity:0);}
+#slide-image-wrap .slide-btn .slide-btn-arrow{width:100px;height:100px; text-align:center;line-height:105px; background:#131313; position:absolute;left:50%;top:50%;margin-left:-150px;margin-top:-50px;opacity:0.7;filter:alpha(opacity:70);color:#fff;font-size:100px;border-radius:20px; display:none;}
+#slide-image-wrap .slide-btn-next .slide-btn-arrow{margin-left:50px;}
+#slide-image-wrap .slide-btn:hover .slide-btn-arrow{ display:block;}
+#slide-image-title p{width:950px; margin:20px auto; line-height:180%;}
+#slide-image-title p.date-time{ text-align:right;}
+
+#slide-list-view-wrap{height:155px;border:1px solid #333; position:relative;}
+#loading-state{width:80px;height:40px; line-height:40px; text-align:center;color:#fff; background:#000;border-radius:10px; position:absolute;left:50%;top:50%;margin-left:-40px;margin-top:-20px;opacity:0.8;filter:alpha(opacity=80); display:none;}
+
+#slide-box{width:872px;height:76px; position:relative;overflow:hidden; margin:20px auto;}
+#slide-box ul{height:68px;margin-top:3px;}
+#slide-box ul li{ float:left;width:116px; text-align:center; margin-right:10px; position:relative; cursor:pointer;}
+#slide-box ul li span{ position:absolute;bottom:0px;right:0; background:#000;color:#fff;}
+
+#slide-list-view-wrap .slide-list-btn{width:20px;height:60px; cursor:pointer;text-align:center;line-height:60px;color:#fff;font-size:24px;border:1px solid #333; position:absolute;left:15px;top:24px;border-radius:5px; background:#333;opacity:0.5;filter:alpha(opacity=50);}
+#slide-list-view-wrap .slide-list-btn-next{left:auto;right:15px;}
+#slide-list-view-wrap .slide-list-btn:hover{ background:#666;}
+#scrollbar-track{width:950px;height:10px; border-bottom:1px solid #333; margin:0 auto;}
+#scrollbar-track .scrollbar-handle{width:100px;height:10px;border-radius:5px; position:relative;top:5px; background:#333;}
+#scrollbar-track .scrollbar-handle:hover{ background:#666;}
+
+#slide-selected-frame{ position:absolute;left:0;top:0;height:68px;width:113px;border:3px solid orange;}
+</style>
+<script type="text/javascript" src="jq.js"></script>
+<script type="text/javascript" src="pz-slide-image.js"></script>
+</head>
+
+<body>
+ 
+
+<div id="slide-galleries-main">
+	<div id="slide-galleries-con">
+    	<h1>组图：广州一大巴闹市行驶中自燃</h1>	
+        <ul id="slide-galleries-toolbar">
+            <li><a href="javascript:void(0);" id="slide-auto-play">自动播放</a>|</li>
+            <li><a href="#11" id="slide-origin-url" target="_blank">查看图片</a>|</li>
+            <li>提示：支持键盘翻页 ←左 右→</li>
+        </ul>
+        <div id="slide-image-wrap">
+        	<div class="slide-btn slide-btn-prev">
+            	<div class="slide-btn-bg-opacity"></div>
+                <div class="slide-btn-arrow">&lt;</div>
+            </div>
+            <img id="slide-image-change" src="1.jpg" />
+            <div class="slide-btn slide-btn-next">
+           	    <div class="slide-btn-bg-opacity"></div>
+                <div class="slide-btn-arrow">&gt;</div>
+            </div>
+            <div id="loading-state">加载中</div>   
+        </div>
+        <div id="slide-image-title">
+        	<p>火情发生不过10分钟，6辆消防车就呼啸而至。经过约10分钟的扑救后，大火被扑灭。记者在下午2时50分到达现场，银色大巴烧得只剩框架，车内驾驶座烧得面目全非，车头玻璃全无。在烧焦客车的四周地面，可见零星的玻璃碎片。图为事发现场。柯皓 摄</p>
+            <p class="date-time"><span>2012年11月12日09:16</span><span>文/广州日报</span><span>版权图片，请勿转载</span></p>
+        </div>
+        <div id="slide-list-view-wrap">
+        	<div id="slide-box">
+            	<ul>
+                    <li class="selected" data-origin="1.jpg"><img src="1-l.jpg" height="68" /><span>1/20</span></li>
+                    <li data-origin="2.jpg"><img src="2-l.jpg" height="68" /><span>2/20</span></li>
+                    <li data-origin="3.jpg"><img src="3-l.jpg" height="68" /><span>3/20</span></li>
+                    <li data-origin="4.jpg"><img src="4-l.jpg" height="68" /><span>4/20</span></li>
+                    <li data-origin="5.jpg"><img src="5-l.jpg" height="68" /><span>5/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782780_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782780_200x200_0.jpg" height="68" /><span>6/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782784_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782784_200x200_0.jpg" height="68" /><span>7/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782781_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782781_200x200_0.jpg" height="68" /><span>8/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666734_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666734_116x86_0.jpg" height="68" /><span>9/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666731_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666731_116x86_0.jpg" height="68" /><span>10/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666729_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666729_116x86_0.jpg" height="68" /><span>11/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666733_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666733_116x86_0.jpg" height="68" /><span>12/20</span></li> 
+                     <li data-origin="2.jpg"><img src="2-l.jpg" height="68" /><span>2/20</span></li>
+                    <li data-origin="3.jpg"><img src="3-l.jpg" height="68" /><span>3/20</span></li>
+                    <li data-origin="4.jpg"><img src="4-l.jpg" height="68" /><span>4/20</span></li>
+                    <li data-origin="5.jpg"><img src="5-l.jpg" height="68" /><span>5/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782780_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782780_200x200_0.jpg" height="68" /><span>6/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782784_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782784_200x200_0.jpg" height="68" /><span>7/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782781_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782781_200x200_0.jpg" height="68" /><span>8/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666734_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666734_116x86_0.jpg" height="68" /><span>9/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666731_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666731_116x86_0.jpg" height="68" /><span>10/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666729_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666729_116x86_0.jpg" height="68" /><span>11/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666733_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666733_116x86_0.jpg" height="68" /><span>12/20</span></li>
+                    <li data-origin="2.jpg"><img src="2-l.jpg" height="68" /><span>2/20</span></li>
+                    <li data-origin="3.jpg"><img src="3-l.jpg" height="68" /><span>3/20</span></li>
+                    <li data-origin="4.jpg"><img src="4-l.jpg" height="68" /><span>4/20</span></li>
+                    <li data-origin="5.jpg"><img src="5-l.jpg" height="68" /><span>5/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782780_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782780_200x200_0.jpg" height="68" /><span>6/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782784_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782784_200x200_0.jpg" height="68" /><span>7/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782781_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782781_200x200_0.jpg" height="68" /><span>8/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666734_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666734_116x86_0.jpg" height="68" /><span>9/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666731_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666731_116x86_0.jpg" height="68" /><span>10/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666729_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666729_116x86_0.jpg" height="68" /><span>11/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666733_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666733_116x86_0.jpg" height="68" /><span>12/20</span></li> 
+                     <li data-origin="2.jpg"><img src="2-l.jpg" height="68" /><span>2/20</span></li>
+                    <li data-origin="3.jpg"><img src="3-l.jpg" height="68" /><span>3/20</span></li>
+                    <li data-origin="4.jpg"><img src="4-l.jpg" height="68" /><span>4/20</span></li>
+                    <li data-origin="5.jpg"><img src="5-l.jpg" height="68" /><span>5/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782780_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782780_200x200_0.jpg" height="68" /><span>6/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782784_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782784_200x200_0.jpg" height="68" /><span>7/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782781_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782781_200x200_0.jpg" height="68" /><span>8/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666734_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666734_116x86_0.jpg" height="68" /><span>9/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666731_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666731_116x86_0.jpg" height="68" /><span>10/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666729_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666729_116x86_0.jpg" height="68" /><span>11/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666733_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666733_116x86_0.jpg" height="68" /><span>12/20</span></li> 
+                    <li data-origin="2.jpg"><img src="2-l.jpg" height="68" /><span>2/20</span></li>
+                    <li data-origin="3.jpg"><img src="3-l.jpg" height="68" /><span>3/20</span></li>
+                    <li data-origin="4.jpg"><img src="4-l.jpg" height="68" /><span>4/20</span></li>
+                    <li data-origin="5.jpg"><img src="5-l.jpg" height="68" /><span>5/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782780_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782780_200x200_0.jpg" height="68" /><span>6/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782784_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782784_200x200_0.jpg" height="68" /><span>7/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782781_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782781_200x200_0.jpg" height="68" /><span>8/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666734_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666734_116x86_0.jpg" height="68" /><span>9/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666731_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666731_116x86_0.jpg" height="68" /><span>10/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666729_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666729_116x86_0.jpg" height="68" /><span>11/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666733_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666733_116x86_0.jpg" height="68" /><span>12/20</span></li> 
+                     <li data-origin="2.jpg"><img src="2-l.jpg" height="68" /><span>2/20</span></li>
+                    <li data-origin="3.jpg"><img src="3-l.jpg" height="68" /><span>3/20</span></li>
+                    <li data-origin="4.jpg"><img src="4-l.jpg" height="68" /><span>4/20</span></li>
+                    <li data-origin="5.jpg"><img src="5-l.jpg" height="68" /><span>5/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782780_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782780_200x200_0.jpg" height="68" /><span>6/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782784_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782784_200x200_0.jpg" height="68" /><span>7/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/778/77827/7782781_1200x1000_0.jpg"><img src="http://img1.gtimg.com/7/778/77827/7782781_200x200_0.jpg" height="68" /><span>8/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666734_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666734_116x86_0.jpg" height="68" /><span>9/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666731_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666731_116x86_0.jpg" height="68" /><span>10/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666729_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666729_116x86_0.jpg" height="68" /><span>11/20</span></li>
+                    <li data-origin="http://img1.gtimg.com/7/766/76667/7666733_980x1200_0.jpg"><img src="http://img1.gtimg.com/7/766/76667/7666733_116x86_0.jpg" height="68" /><span>12/20</span></li>
+                
+                
+                </ul>
+                <div id="slide-selected-frame"></div>
+            </div> 
+            <div class="slide-list-btn slide-list-btn-prev">&lt;</div>
+            <div class="slide-list-btn slide-list-btn-next">&gt;</div>
+            <div id="scrollbar-track">
+                <div class="scrollbar-handle"></div>
+            </div>
+        </div>   
+  </div>
+</div>
+
+<script>
+
+var sildeImage=new SildeImage($("#slide-galleries-main"));
+
+</script>
+
+
+
+</body>
+</html>
